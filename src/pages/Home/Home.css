@@ -1,0 +1,40 @@
+.home-page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 4rem;
+  gap: 1.5rem;
+  max-width: 56.25rem;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.todo-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 2rem;
+  border: 1px solid var(--black);
+  padding: 4rem;
+  cursor: pointer;
+}
+
+.todo-list-heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-unordered-lists {
+  list-style-type: none;
+}
+
+.todos {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-lists-container {
+  padding: 1.5rem;
+}
