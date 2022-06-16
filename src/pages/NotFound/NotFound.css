@@ -1,0 +1,21 @@
+.page-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.page-heading {
+  font-size: 100px;
+  letter-spacing: 1.2rem;
+}
+
+.page-subheading {
+  font-size: 20px;
+}
+
+.page-container .btn {
+  margin: 1rem;
+}
