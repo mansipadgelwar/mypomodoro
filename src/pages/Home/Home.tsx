@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { TaskForm } from "../../component";
+import { useData } from "../../context/dataContext";
 import "./Home.css";
-
-// type Show = {
-//   show: boolean;
-//   setShow: (value: boolean) => void;
-//   onClose: () => void;
-// };
 
 const Home = () => {
   const [show, setShow] = useState(false);
+  const { listOfTasks } = useData();
 
   return (
     <div>
@@ -33,41 +29,17 @@ const Home = () => {
             </div>
             <div className="todo-lists-container">
               <ul className="todo-unordered-lists">
-                <li className="todos h4">
-                  <p>Math Homework</p>
-                  <div>
-                    <span className="material-icons">edit_note</span>
-                    <span className="material-icons">delete</span>
-                  </div>
-                </li>
-                <li className="todos h4">
-                  <p>English Homework</p>
-                  <div>
-                    <span className="material-icons">edit_note</span>
-                    <span className="material-icons">delete</span>
-                  </div>
-                </li>
-                <li className="todos h4">
-                  <p>Science Homework</p>
-                  <div>
-                    <span className="material-icons">edit_note</span>
-                    <span className="material-icons">delete</span>
-                  </div>
-                </li>
-                <li className="todos h4">
-                  <p>Geography Homework</p>
-                  <div>
-                    <span className="material-icons">edit_note</span>
-                    <span className="material-icons">delete</span>
-                  </div>
-                </li>
-                <li className="todos">
-                  <p>Math Homework</p>
-                  <div>
-                    <span className="material-icons">edit_note</span>
-                    <span className="material-icons">delete</span>
-                  </div>
-                </li>
+                {listOfTasks.tasks.map(({ id, title }) => {
+                  return (
+                    <li className="todos h4" key={id}>
+                      <p>{title}</p>
+                      <div>
+                        <span className="material-icons">edit_note</span>
+                        <span className="material-icons">delete</span>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </div>

@@ -24,6 +24,7 @@ const TaskForm = ({ show, setShow, onClose }: Show) => {
         description: formData.description,
         time: formData.time,
       });
+      // console.log({ updatedTasks });
       return { ...prev, tasks: updatedTasks };
     });
     setFormData("");
