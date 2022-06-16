@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Home, Pomodoro } from "./pages";
+import { Home, Pomodoro, NotFound } from "./pages";
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pomodoro" element={<Pomodoro />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
