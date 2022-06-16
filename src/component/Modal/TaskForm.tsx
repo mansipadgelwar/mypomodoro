@@ -2,8 +2,18 @@ import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/dataContext";
 import "./TaskForm.css";
 
-const TaskForm = () => {
+type Show = {
+  show: boolean;
+  setShow: (value: boolean) => void;
+  onClose: () => void;
+};
+
+const TaskForm = ({ show, setShow, onClose }: Show) => {
   const { formData, setListOfTasks, setFormData } = useData();
+
+  if (!show) {
+    return null;
+  }
 
   const handleTaskDetail = (event: any) => {
     event.preventDefault();
@@ -14,9 +24,10 @@ const TaskForm = () => {
         description: formData.description,
         time: formData.time,
       });
-      console.log({ updatedTasks });
       return { ...prev, tasks: updatedTasks };
     });
+    setFormData("");
+    onClose();
   };
 
   return (
@@ -24,7 +35,7 @@ const TaskForm = () => {
       <div className="modal">
         <div className="modal-heading">
           <div>
-            <button className="modal-close-icon">
+            <button className="modal-close-icon" onClick={onClose}>
               <span className="material-icons">close</span>
             </button>
           </div>
@@ -78,7 +89,7 @@ const TaskForm = () => {
           </ul>
         </div>
         <div className="filter-modal-cta">
-          <button className="btn ">Cancel</button>
+          <button className="btn">Cancel</button>
           <button
             className="btn btn-cta"
             onClick={(event) => handleTaskDetail(event)}
