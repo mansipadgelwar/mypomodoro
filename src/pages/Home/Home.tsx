@@ -5,7 +5,29 @@ import "./Home.css";
 
 const Home = () => {
   const [show, setShow] = useState(false);
-  const { listOfTasks } = useData();
+  const { listOfTasks, setFormData, setListOfTasks } = useData();
+
+  const handleEditTask = (task: any) => {
+    setShow(true);
+    setFormData({
+      title: task.title,
+      description: task.description,
+      time: task.time,
+    });
+  };
+
+  const handleDeleteTask = (task: any) => {
+    const updatedListOfTasks = [...listOfTasks.tasks].filter(
+      (item) => item.id !== task.id
+    );
+    console.log("updated list", updatedListOfTasks);
+    setListOfTasks({ ...listOfTasks, tasks: updatedListOfTasks });
+  };
+
+  const handleModal = () => {
+    setFormData("");
+    setShow(true);
+  };
 
   return (
     <div>
@@ -23,19 +45,29 @@ const Home = () => {
           <div className="todo-list-wrapper">
             <div className="todo-list-heading">
               <p className="h2 text-bold">To - Do List</p>
-              <span className="material-icons" onClick={() => setShow(true)}>
+              <span className="material-icons" onClick={() => handleModal()}>
                 add_circle
               </span>
             </div>
             <div className="todo-lists-container">
               <ul className="todo-unordered-lists">
-                {listOfTasks.tasks.map(({ id, title }) => {
+                {listOfTasks.tasks?.map((task) => {
                   return (
-                    <li className="todos h4" key={id}>
-                      <p>{title}</p>
+                    <li className="todos h4" key={task.id}>
+                      <p>{task.title}</p>
                       <div>
-                        <span className="material-icons">edit_note</span>
-                        <span className="material-icons">delete</span>
+                        <span
+                          className="material-icons"
+                          onClick={() => handleEditTask(task)}
+                        >
+                          edit_note
+                        </span>
+                        <span
+                          className="material-icons"
+                          onClick={() => handleDeleteTask(task)}
+                        >
+                          delete
+                        </span>
                       </div>
                     </li>
                   );
