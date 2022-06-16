@@ -1,68 +1,10 @@
+import { TaskForm } from "../../component";
 import "./Home.css";
-// import { uuid } from "uuidv4";
-// import { useReducer } from "react";
-
-// type State = {
-//   id: string;
-//   title: string;
-//   description: string;
-//   time: number;
-// };
-
-// const initialFormDetailsState: State = {
-//   id: uuid(),
-//   title: "",
-//   description: "",
-//   time: 0,
-// };
-
-// type Action =
-//   | {
-//       type: "SET_TITLE";
-//       payload: string;
-//     }
-//   | {
-//       type: "SET_DESCRIPTION";
-//       payload: string;
-//     }
-//   | {
-//       type: "SET_TIME";
-//       payload: number;
-//     }
-//   | {
-//       type: "SUBMIT_FORM";
-//     };
-
-// function inputReducer(state: State, action: Action): State | undefined {
-//   switch (action?.type) {
-//     case "SET_TITLE":
-//       return { ...state, title: action.payload };
-
-//     case "SET_DESCRIPTION":
-//       return { ...state, description: action.payload };
-
-//     case "SET_TIME":
-//       return { ...state, time: action.payload };
-
-//     case "SUBMIT_FORM":
-//       // let newObj = {
-//       //   id: uuid(),
-//       //   title: state?.title,
-//       //   description: state?.description,
-//       //   time: state?.time,
-//       // };
-//       return { ...state };
-
-//     default:
-//       console.log("no case found");
-//   }
-// }
 
 const Home = () => {
-  // const [state, dispatch] = useReducer(inputReducer, initialFormDetailsState);
-
   return (
     <div className="home-page-container">
+      <TaskForm />
       <div className="h2 text-bold">Welcome back, Mansi!</div>
       <div className="h4">You have 4 tasks for todo. All the best!!</div>
       <div className="todo-list-wrapper">
