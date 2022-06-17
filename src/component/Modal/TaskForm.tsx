@@ -1,5 +1,4 @@
-import { useData } from "../../context/dataContext";
-import { useService } from "../../context/serviceContext";
+import { useData, useService } from "../../context";
 import "./TaskForm.css";
 
 type Show = {

@@ -11,13 +11,9 @@ type FormData = {
   time: string;
 };
 
-// type ListOfTasks = { tasks: any[] };
-
 type DataContextType = {
   formData: FormData;
-  // listOfTasks: ListOfTasks;
   setFormData: (value: any) => void;
-  // setListOfTasks: (value: any) => void;
   isEdited: boolean;
   setIsEdited: (value: boolean) => void;
   handleEditTask: (value: any) => void;

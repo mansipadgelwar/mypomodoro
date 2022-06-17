@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { TaskForm } from "../../component";
-import { useData } from "../../context/dataContext";
-import { useService } from "../../context/serviceContext";
+import { useData, useService } from "../../context";
 import "./Home.css";
 
 type FormData = {
