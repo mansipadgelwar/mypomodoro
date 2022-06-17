@@ -5,21 +5,28 @@ type DataProp = {
 };
 
 type FormData = {
+  id: string;
   title: string;
   description: string;
   time: string;
 };
 
-type ListOfTasks = { tasks: any[] };
+// type ListOfTasks = { tasks: any[] };
 
 type DataContextType = {
   formData: FormData;
-  listOfTasks: ListOfTasks;
+  // listOfTasks: ListOfTasks;
   setFormData: (value: any) => void;
-  setListOfTasks: (value: any) => void;
+  // setListOfTasks: (value: any) => void;
+  isEdited: boolean;
+  setIsEdited: (value: boolean) => void;
+  handleEditTask: (value: any) => void;
+  editedListOfTasks: FormData;
+  setEditedListOfTasks: (value: any) => void;
 };
 
 const initialFormData: FormData = {
+  id: "",
   title: "",
   description: "",
   time: "",
@@ -29,11 +36,25 @@ const DataContext = createContext<DataContextType>({} as DataContextType);
 
 const DataProvider = ({ children }: DataProp) => {
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const [listOfTasks, setListOfTasks] = useState<ListOfTasks>({ tasks: [] });
+  const [isEdited, setIsEdited] = useState(false);
+  const [editedListOfTasks, setEditedListOfTasks] =
+    useState<FormData>(initialFormData);
+
+  const handleEditTask = (event: any) => {
+    event.preventDefault();
+  };
 
   return (
     <DataContext.Provider
-      value={{ formData, setFormData, listOfTasks, setListOfTasks }}
+      value={{
+        formData,
+        setFormData,
+        isEdited,
+        setIsEdited,
+        handleEditTask,
+        setEditedListOfTasks,
+        editedListOfTasks,
+      }}
     >
       {children}
     </DataContext.Provider>

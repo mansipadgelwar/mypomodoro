@@ -1,5 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
 import { useData } from "../../context/dataContext";
+import { useService } from "../../context/serviceContext";
 import "./TaskForm.css";
 
 type Show = {
@@ -9,24 +9,34 @@ type Show = {
 };
 
 const TaskForm = ({ show, setShow, onClose }: Show) => {
-  const { formData, setListOfTasks, setFormData } = useData();
+  const { formData, setFormData, isEdited, editedListOfTasks } = useData();
+  const { state, dispatch } = useService();
 
   if (!show) {
     return null;
   }
 
+  const handleEditTask = (event: any) => {
+    event.preventDefault();
+    const updateList = state.tasks.map((item) => {
+      if (item.id === editedListOfTasks.id) {
+        const updatedItem = {
+          ...item,
+          title: formData.title,
+          description: formData.description,
+          time: formData.time,
+        };
+        return updatedItem;
+      }
+      return item;
+    });
+    dispatch({ type: "UPDATE_TASK", payload: updateList });
+    onClose();
+  };
+
   const handleTaskDetail = (event: any) => {
     event.preventDefault();
-    setListOfTasks((prev: any) => {
-      const updatedTasks = prev.tasks.concat({
-        id: uuidv4(),
-        title: formData.title,
-        description: formData.description,
-        time: formData.time,
-      });
-      // console.log({ updatedTasks });
-      return { ...prev, tasks: updatedTasks };
-    });
+    dispatch({ type: "SET_TASK", payload: formData });
     setFormData("");
     onClose();
   };
@@ -93,7 +103,9 @@ const TaskForm = ({ show, setShow, onClose }: Show) => {
           <button className="btn">Cancel</button>
           <button
             className="btn btn-cta"
-            onClick={(event) => handleTaskDetail(event)}
+            onClick={(event) =>
+              isEdited ? handleEditTask(event) : handleTaskDetail(event)
+            }
           >
             Done
           </button>

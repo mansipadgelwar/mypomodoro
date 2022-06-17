@@ -1,30 +1,39 @@
 import { useState } from "react";
 import { TaskForm } from "../../component";
 import { useData } from "../../context/dataContext";
+import { useService } from "../../context/serviceContext";
 import "./Home.css";
+
+type FormData = {
+  id: string;
+  title: string;
+  description: string;
+  time: string;
+};
 
 const Home = () => {
   const [show, setShow] = useState(false);
-  const { listOfTasks, setFormData, setListOfTasks } = useData();
+  const { setFormData, setIsEdited, setEditedListOfTasks } = useData();
+  const { state, dispatch } = useService();
 
-  const handleEditTask = (task: any) => {
-    setShow(true);
-    setFormData({
-      title: task.title,
-      description: task.description,
-      time: task.time,
-    });
-  };
-
-  const handleDeleteTask = (task: any) => {
-    const updatedListOfTasks = [...listOfTasks.tasks].filter(
+  const handleDeleteTask = (task: FormData) => {
+    const updatedListOfTasks = [...state.tasks].filter(
       (item) => item.id !== task.id
     );
-    console.log("updated list", updatedListOfTasks);
-    setListOfTasks({ ...listOfTasks, tasks: updatedListOfTasks });
+    dispatch({ type: "DELETE_TASK", payload: updatedListOfTasks });
+  };
+
+  const handleUpdationOfTask = (event: any, task: FormData) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setFormData({ title: task.title, description: task.description });
+    setIsEdited(true);
+    setShow(true);
+    setEditedListOfTasks(task);
   };
 
   const handleModal = () => {
+    setIsEdited(false);
     setFormData("");
     setShow(true);
   };
@@ -51,14 +60,14 @@ const Home = () => {
             </div>
             <div className="todo-lists-container">
               <ul className="todo-unordered-lists">
-                {listOfTasks.tasks?.map((task) => {
+                {state.tasks.map((task) => {
                   return (
                     <li className="todos h4" key={task.id}>
                       <p>{task.title}</p>
                       <div>
                         <span
                           className="material-icons"
-                          onClick={() => handleEditTask(task)}
+                          onClick={(event) => handleUpdationOfTask(event, task)}
                         >
                           edit_note
                         </span>
