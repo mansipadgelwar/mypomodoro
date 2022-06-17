@@ -52,7 +52,7 @@ const Home = () => {
       <div className={show ? "modal-background-page" : ""}>
         <div className="home-page-container">
           <div className="h2 text-bold">Welcome back, Mansi!</div>
-          <div className="h4">You have 4 tasks for todo. All the best!!</div>
+          <div className="h4">{`You have ${state.tasks.length} tasks for todo. All the best!!`}</div>
           <div className="todo-list-wrapper">
             <div className="todo-list-heading">
               <p className="h2 text-bold">To - Do List</p>
