@@ -1,5 +1,6 @@
 import { useData, useService } from "../../context";
 import "./TaskForm.css";
+import { useToast } from "../../custom-hooks/useToast";
 
 type Show = {
   show: boolean;
@@ -10,6 +11,7 @@ type Show = {
 const TaskForm = ({ show, setShow, onClose }: Show) => {
   const { formData, setFormData, isEdited, editedListOfTasks } = useData();
   const { state, dispatch } = useService();
+  const { showToast } = useToast();
 
   if (!show) {
     return null;
@@ -30,12 +32,14 @@ const TaskForm = ({ show, setShow, onClose }: Show) => {
       return item;
     });
     dispatch({ type: "UPDATE_TASK", payload: updateList });
+    showToast("Task updated successfully", "success");
     onClose();
   };
 
   const handleTaskDetail = (event: any) => {
     event.preventDefault();
     dispatch({ type: "SET_TASK", payload: formData });
+    showToast("Task added successfully", "success");
     setFormData("");
     onClose();
   };

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { TaskForm } from "../../component";
 import { useData, useService } from "../../context";
 import "./Home.css";
+import { useToast } from "../../custom-hooks/useToast";
 
 type FormData = {
   id: string;
@@ -14,12 +15,14 @@ const Home = () => {
   const [show, setShow] = useState(false);
   const { setFormData, setIsEdited, setEditedListOfTasks } = useData();
   const { state, dispatch } = useService();
+  const { showToast } = useToast();
 
   const handleDeleteTask = (task: FormData) => {
     const updatedListOfTasks = [...state.tasks].filter(
       (item) => item.id !== task.id
     );
     dispatch({ type: "DELETE_TASK", payload: updatedListOfTasks });
+    showToast("Task deleted successfully", "success");
   };
 
   const handleUpdationOfTask = (event: any, task: FormData) => {
