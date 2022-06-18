@@ -3,7 +3,7 @@ import { TaskForm } from "../../component";
 import { useData, useService } from "../../context";
 import "./Home.css";
 import { useToast } from "../../custom-hooks/useToast";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 type FormData = {
   id: string;
@@ -68,27 +68,28 @@ const Home = () => {
               <ul className="todo-unordered-lists">
                 {state.tasks.map((task) => {
                   return (
-                    <Link to={`/pomodoro/${task.id}`}>
-                      <li className="todos h4" key={task.id}>
+                    <li className="todos h4" key={task.id}>
+                      <NavLink
+                        to={`/pomodoro/${task.id}`}
+                        className="task-title"
+                      >
                         <p>{task.title}</p>
-                        <div>
-                          <span
-                            className="material-icons"
-                            onClick={(event) =>
-                              handleUpdationOfTask(event, task)
-                            }
-                          >
-                            edit_note
-                          </span>
-                          <span
-                            className="material-icons"
-                            onClick={() => handleDeleteTask(task)}
-                          >
-                            delete
-                          </span>
-                        </div>
-                      </li>
-                    </Link>
+                      </NavLink>
+                      <div>
+                        <span
+                          className="material-icons"
+                          onClick={(event) => handleUpdationOfTask(event, task)}
+                        >
+                          edit_note
+                        </span>
+                        <span
+                          className="material-icons"
+                          onClick={() => handleDeleteTask(task)}
+                        >
+                          delete
+                        </span>
+                      </div>
+                    </li>
                   );
                 })}
               </ul>
