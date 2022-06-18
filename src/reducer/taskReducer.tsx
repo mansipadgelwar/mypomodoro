@@ -1,28 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-
-type FormData = {
-  id: string;
-  title: string;
-  description: string;
-  time: string;
-  date: string;
-};
-
-type ListOfTasks = { tasks: any[] };
-
-type Action =
-  | {
-      type: "SET_TASK";
-      payload: FormData;
-    }
-  | {
-      type: "DELETE_TASK";
-      payload: any[];
-    }
-  | {
-      type: "UPDATE_TASK";
-      payload: any[];
-    };
+import { ListOfTasks, Action } from "../types/data.type";
 
 const taskReducer = (state: ListOfTasks, action: Action) => {
   switch (action.type) {

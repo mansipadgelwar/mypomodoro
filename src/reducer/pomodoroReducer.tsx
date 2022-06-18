@@ -1,21 +1,4 @@
-type Action =
-  | {
-      type: "START_CLOCK";
-      payload: { play: boolean };
-    }
-  | {
-      type: "PAUSE_CLOCK";
-      payload: { play: boolean };
-    }
-  | {
-      type: "RESET_CLOCK";
-      payload: { play: boolean; key: number };
-    };
-
-type PomodoroState = {
-  play: boolean;
-  key: number;
-};
+import { Action, PomodoroState } from "../types/pomodoro.type";
 
 const pomodoroReducer = (pomodoroState: PomodoroState, action: Action) => {
   switch (action.type) {

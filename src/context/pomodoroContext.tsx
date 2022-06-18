@@ -1,31 +1,6 @@
 import { createContext, ReactNode, useContext, useReducer } from "react";
 import { pomodoroReducer } from "../reducer/pomodoroReducer";
-
-type Action =
-  | {
-      type: "START_CLOCK";
-      payload: { play: boolean };
-    }
-  | {
-      type: "PAUSE_CLOCK";
-      payload: { play: boolean };
-    }
-  | {
-      type: "RESET_CLOCK";
-      payload: { play: boolean; key: number };
-    };
-
-type Dispatch = (action: Action) => void;
-
-type PomodoroState = {
-  play: boolean;
-  key: number;
-};
-
-type PomodoroContextType = {
-  pomodoroState: PomodoroState;
-  pomodoroDispatch: Dispatch;
-};
+import { PomodoroContextType, PomodoroState } from "../types/pomodoro.type";
 
 type PomodoroProp = {
   children: ReactNode;
