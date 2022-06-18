@@ -1,11 +1,12 @@
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { usePomodoro } from "../../context";
 
 type RemainingTime = {
   remainingTime: number;
 };
 
 type TimeProps = {
-  time: string;
+  time: string | undefined;
 };
 const renderTime = ({ remainingTime }: RemainingTime) => {
   if (remainingTime === 0) {
@@ -22,10 +23,11 @@ const renderTime = ({ remainingTime }: RemainingTime) => {
 };
 
 const Timer = ({ time }: TimeProps) => {
+  const { pomodoroState } = usePomodoro();
   return (
     <div>
       <CountdownCircleTimer
-        isPlaying
+        isPlaying={pomodoroState.play}
         duration={Number(time)}
         colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
         colorsTime={[10, 6, 3, 0]}

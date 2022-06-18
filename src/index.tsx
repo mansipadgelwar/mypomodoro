@@ -4,17 +4,18 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
-import { DataProvider } from "./context/dataContext";
-import { ServiceProvider } from "./context/serviceContext";
 import { ToastContainer } from "react-toastify";
+import { PomodoroProvider, ServiceProvider, DataProvider } from "./context";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <DataProvider>
         <ServiceProvider>
-          <ToastContainer />
-          <App />
+          <PomodoroProvider>
+            <ToastContainer />
+            <App />
+          </PomodoroProvider>
         </ServiceProvider>
       </DataProvider>
     </Router>

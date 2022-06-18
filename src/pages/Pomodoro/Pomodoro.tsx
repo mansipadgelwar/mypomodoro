@@ -1,11 +1,12 @@
 import "./Pomodoro.css";
 import { Timer } from "../../component/Timer/Timer";
-import { useService } from "../../context";
+import { usePomodoro, useService } from "../../context";
 import { useParams } from "react-router-dom";
 
 const Pomodoro = () => {
   const { state } = useService();
   const { id } = useParams();
+  const { pomodoroDispatch } = usePomodoro();
 
   const currentTask = state.tasks.find((item) => item.id === id);
 
@@ -14,8 +15,22 @@ const Pomodoro = () => {
       <div className="pomodoro-menu">
         <Timer time={currentTask.time} />
         <div className="pomodoro-controls">
-          <button className="btn btn-cta">Start</button>
-          <button className="btn btn-secondary">Pause</button>
+          <button
+            className="btn btn-cta"
+            onClick={() =>
+              pomodoroDispatch({ type: "START_CLOCK", payload: true })
+            }
+          >
+            Start
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() =>
+              pomodoroDispatch({ type: "PAUSE_CLOCK", payload: false })
+            }
+          >
+            Pause
+          </button>
         </div>
 
         <button className="btn btn-secondary-outline pomodoro-restart">
