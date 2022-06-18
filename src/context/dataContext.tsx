@@ -10,7 +10,7 @@ const initialFormData: FormData = {
   title: "",
   description: "",
   time: "",
-  date: "",
+  date: new Date().toLocaleTimeString(),
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);

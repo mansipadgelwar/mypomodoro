@@ -30,7 +30,11 @@ const Home = () => {
   const handleUpdationOfTask = (event: any, task: FormData) => {
     event.preventDefault();
     event.stopPropagation();
-    setFormData({ title: task.title, description: task.description });
+    setFormData({
+      title: task.title,
+      description: task.description,
+      time: task.time,
+    });
     setIsEdited(true);
     setShow(true);
     setEditedListOfTasks(task);

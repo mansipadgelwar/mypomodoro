@@ -8,7 +8,7 @@ type Show = {
   onClose: () => void;
 };
 
-const TaskForm = ({ show, setShow, onClose }: Show) => {
+const TaskForm = ({ show, onClose }: Show) => {
   const { formData, setFormData, isEdited, editedListOfTasks } = useData();
   const { state, dispatch } = useService();
   const { showToast } = useToast();
@@ -88,7 +88,7 @@ const TaskForm = ({ show, setShow, onClose }: Show) => {
             <li className="unordered-list">
               <input
                 type="number"
-                placeholder="Add Time"
+                placeholder="Add time in seconds"
                 className="input-title"
                 onChange={(event) =>
                   setFormData((prev: any) => ({

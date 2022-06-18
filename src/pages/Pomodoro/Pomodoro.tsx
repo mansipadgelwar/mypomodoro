@@ -51,7 +51,9 @@ const Pomodoro = () => {
       <div className="task-description-container">
         <div className="task-title h2 text-bold">{currentTask?.title}</div>
         <div className="task-description">{currentTask?.description}</div>
-        <div className="text-bold">Date added: {currentTask?.date}</div>
+        <div className="text-bold">
+          Date added: {`${new Date(currentTask?.date).toLocaleString()}`}
+        </div>
       </div>
     </div>
   );

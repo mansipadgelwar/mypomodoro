@@ -8,7 +8,7 @@ const taskReducer = (state: ListOfTasks, action: Action) => {
         ...state,
         tasks: [
           ...state.tasks,
-          { ...action.payload, id: uuidv4(), date: Date().toLocaleString() },
+          { ...action.payload, id: uuidv4(), date: new Date().getTime() },
         ],
       };
     case "DELETE_TASK":
