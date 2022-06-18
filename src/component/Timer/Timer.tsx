@@ -1,5 +1,6 @@
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { usePomodoro } from "../../context";
+import "../Timer/Timer.css";
 
 type RemainingTime = {
   remainingTime: number;
@@ -14,7 +15,7 @@ const renderTime = ({ remainingTime }: RemainingTime) => {
   }
 
   return (
-    <div className="timer">
+    <div className="timer text-bold">
       <div className="text">Remaining</div>
       <div className="value">{remainingTime}</div>
       <div className="text">seconds</div>

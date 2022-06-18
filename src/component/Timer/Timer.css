@@ -1,0 +1,7 @@
+.timer {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  color: var(--primary-color);
+}
