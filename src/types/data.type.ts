@@ -6,7 +6,7 @@ export type FormData = {
     date: string;
   };
   
-  export type DataContextType = {
+export type DataContextType = {
     formData: FormData;
     setFormData: (value: any) => void;
     isEdited: boolean;
@@ -32,3 +32,10 @@ export type Action =
       type: "UPDATE_TASK";
       payload: any[];
     };
+
+export type Dispatch = (action: Action) => void;
+
+export type ServiceContextType = {
+  state: ListOfTasks;
+  dispatch: Dispatch;
+};

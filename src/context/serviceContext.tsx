@@ -1,39 +1,9 @@
 import { createContext, useContext, ReactNode, useReducer } from "react";
 import { taskReducer } from "../reducer/taskReducer";
+import { ListOfTasks, ServiceContextType } from "../types/data.type";
 
 type ServiceProp = {
   children: ReactNode;
-};
-
-type FormData = {
-  id: string;
-  title: string;
-  description: string;
-  time: string;
-  date: string;
-};
-
-type ListOfTasks = { tasks: any[] };
-
-type Action =
-  | {
-      type: "SET_TASK";
-      payload: FormData;
-    }
-  | {
-      type: "DELETE_TASK";
-      payload: any[];
-    }
-  | {
-      type: "UPDATE_TASK";
-      payload: any[];
-    };
-
-type Dispatch = (action: Action) => void;
-
-type ServiceContextType = {
-  state: ListOfTasks;
-  dispatch: Dispatch;
 };
 
 const initialState: ListOfTasks = {
