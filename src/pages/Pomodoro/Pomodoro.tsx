@@ -13,7 +13,7 @@ const Pomodoro = () => {
   return (
     <div className="pomodoro-container">
       <div className="pomodoro-menu">
-        <Timer time={currentTask.time} />
+        <Timer time={currentTask?.time} />
         <div className="pomodoro-controls">
           <button
             className="btn btn-cta"
@@ -49,15 +49,9 @@ const Pomodoro = () => {
         </button>
       </div>
       <div className="task-description-container">
-        <div className="task-title h2 text-bold">{currentTask.title}</div>
-        <div className="task-description">{currentTask.description}</div>
-        <div className="h3 text-bold">Tags:</div>
-        <div className="tags-container">
-          <button className="btn">Restart</button>
-          <button className="btn">Restart</button>
-          <button className="btn">Restart</button>
-        </div>
-        <div className="text-bold">Date added: {currentTask.date}</div>
+        <div className="task-title h2 text-bold">{currentTask?.title}</div>
+        <div className="task-description">{currentTask?.description}</div>
+        <div className="text-bold">Date added: {currentTask?.date}</div>
       </div>
     </div>
   );

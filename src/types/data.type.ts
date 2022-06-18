@@ -1,11 +1,11 @@
 export type FormData = {
     id: string;
-    title: string;
-    description: string;
-    time: string;
-    date: string;
+    title: string | undefined;
+    description: string | undefined;
+    time: string | undefined;
+    date: string | undefined;
   };
-  
+
 export type DataContextType = {
     formData: FormData;
     setFormData: (value: any) => void;
@@ -15,7 +15,6 @@ export type DataContextType = {
     editedListOfTasks: FormData;
     setEditedListOfTasks: (value: any) => void;
   };
-
 
 export type ListOfTasks = { tasks: any[] };
 
