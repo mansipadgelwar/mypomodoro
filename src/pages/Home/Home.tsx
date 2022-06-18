@@ -4,6 +4,7 @@ import { useData, useService } from "../../context";
 import "./Home.css";
 import { useToast } from "../../custom-hooks/useToast";
 import { Link } from "react-router-dom";
+
 type FormData = {
   id: string;
   title: string;
@@ -22,7 +23,6 @@ const Home = () => {
     const updatedListOfTasks = [...state.tasks].filter(
       (item) => item.id !== task.id
     );
-    console.log(updatedListOfTasks);
     dispatch({ type: "DELETE_TASK", payload: updatedListOfTasks });
     showToast("Task deleted successfully", "success");
   };
@@ -41,6 +41,8 @@ const Home = () => {
     setFormData("");
     setShow(true);
   };
+
+  localStorage.setItem("listOfTasks", JSON.stringify(state.tasks));
 
   return (
     <div>
