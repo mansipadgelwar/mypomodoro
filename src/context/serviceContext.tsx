@@ -7,7 +7,7 @@ type ServiceProp = {
 };
 
 const initialState: ListOfTasks = {
-  tasks: [],
+  tasks: JSON.parse(localStorage.getItem("listOfTasks") || "{}"),
 };
 
 const ServiceContext = createContext<ServiceContextType>(
