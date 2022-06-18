@@ -10,6 +10,7 @@ type FormData = {
   title: string;
   description: string;
   time: string;
+  date: string;
 };
 
 type ListOfTasks = { tasks: any[] };

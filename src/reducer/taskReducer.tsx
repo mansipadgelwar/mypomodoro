@@ -5,6 +5,7 @@ type FormData = {
   title: string;
   description: string;
   time: string;
+  date: string;
 };
 
 type ListOfTasks = { tasks: any[] };
@@ -28,7 +29,10 @@ const taskReducer = (state: ListOfTasks, action: Action) => {
     case "SET_TASK":
       return {
         ...state,
-        tasks: [...state.tasks, { ...action.payload, id: uuidv4() }],
+        tasks: [
+          ...state.tasks,
+          { ...action.payload, id: uuidv4(), date: Date().toLocaleString() },
+        ],
       };
     case "DELETE_TASK":
       return { ...state, tasks: action.payload };

@@ -9,6 +9,7 @@ type FormData = {
   title: string;
   description: string;
   time: string;
+  date: string;
 };
 
 type DataContextType = {
@@ -26,6 +27,7 @@ const initialFormData: FormData = {
   title: "",
   description: "",
   time: "",
+  date: "",
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);

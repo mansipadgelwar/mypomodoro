@@ -3,9 +3,13 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 type RemainingTime = {
   remainingTime: number;
 };
+
+type TimeProps = {
+  time: string;
+};
 const renderTime = ({ remainingTime }: RemainingTime) => {
   if (remainingTime === 0) {
-    return <div className="timer">Too lale...</div>;
+    return <div className="timer">Too late...</div>;
   }
 
   return (
@@ -17,12 +21,12 @@ const renderTime = ({ remainingTime }: RemainingTime) => {
   );
 };
 
-const Timer = () => {
+const Timer = ({ time }: TimeProps) => {
   return (
     <div>
       <CountdownCircleTimer
         isPlaying
-        duration={20}
+        duration={Number(time)}
         colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
         colorsTime={[10, 6, 3, 0]}
         onComplete={() => ({ shouldRepeat: true, delay: 1 })}

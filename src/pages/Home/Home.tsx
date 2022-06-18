@@ -3,12 +3,13 @@ import { TaskForm } from "../../component";
 import { useData, useService } from "../../context";
 import "./Home.css";
 import { useToast } from "../../custom-hooks/useToast";
-
+import { Link } from "react-router-dom";
 type FormData = {
   id: string;
   title: string;
   description: string;
   time: string;
+  date: string;
 };
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
     const updatedListOfTasks = [...state.tasks].filter(
       (item) => item.id !== task.id
     );
+    console.log(updatedListOfTasks);
     dispatch({ type: "DELETE_TASK", payload: updatedListOfTasks });
     showToast("Task deleted successfully", "success");
   };
@@ -64,23 +66,27 @@ const Home = () => {
               <ul className="todo-unordered-lists">
                 {state.tasks.map((task) => {
                   return (
-                    <li className="todos h4" key={task.id}>
-                      <p>{task.title}</p>
-                      <div>
-                        <span
-                          className="material-icons"
-                          onClick={(event) => handleUpdationOfTask(event, task)}
-                        >
-                          edit_note
-                        </span>
-                        <span
-                          className="material-icons"
-                          onClick={() => handleDeleteTask(task)}
-                        >
-                          delete
-                        </span>
-                      </div>
-                    </li>
+                    <Link to={`/pomodoro/${task.id}`}>
+                      <li className="todos h4" key={task.id}>
+                        <p>{task.title}</p>
+                        <div>
+                          <span
+                            className="material-icons"
+                            onClick={(event) =>
+                              handleUpdationOfTask(event, task)
+                            }
+                          >
+                            edit_note
+                          </span>
+                          <span
+                            className="material-icons"
+                            onClick={() => handleDeleteTask(task)}
+                          >
+                            delete
+                          </span>
+                        </div>
+                      </li>
+                    </Link>
                   );
                 })}
               </ul>
