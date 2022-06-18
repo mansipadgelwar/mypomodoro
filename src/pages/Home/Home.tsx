@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TaskForm } from "../../component";
 import { useData, useService } from "../../context";
 import "./Home.css";
@@ -47,6 +47,10 @@ const Home = () => {
   };
 
   localStorage.setItem("listOfTasks", JSON.stringify(state.tasks));
+
+  useEffect(() => {
+    document.title = `Home`;
+  });
 
   return (
     <div>

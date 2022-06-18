@@ -2,13 +2,18 @@ import "./Pomodoro.css";
 import { Timer } from "../../component/Timer/Timer";
 import { usePomodoro, useService } from "../../context";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const Pomodoro = () => {
   const { state } = useService();
   const { id } = useParams();
-  const { pomodoroDispatch } = usePomodoro();
+  const { pomodoroDispatch, title } = usePomodoro();
 
   const currentTask = state.tasks.find((item) => item.id === id);
+
+  useEffect(() => {
+    document.title = `${title} 🙇‍♂️| Pomodoro`;
+  });
 
   return (
     <div className="pomodoro-container">

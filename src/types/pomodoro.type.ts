@@ -22,6 +22,8 @@ export type PomodoroState = {
 export type PomodoroContextType = {
   pomodoroState: PomodoroState;
   pomodoroDispatch: Dispatch;
+  title: string;
+  setTitle: (title: string) => void
 };
 
 

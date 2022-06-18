@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { usePomodoro } from "../../context";
 import "../Timer/Timer.css";
@@ -9,25 +10,32 @@ type RemainingTime = {
 type TimeProps = {
   time: string | undefined;
 };
-const renderTime = ({ remainingTime }: RemainingTime) => {
-  if (remainingTime === 0) {
-    return <div className="timer">Too late...</div>;
-  }
-  const hours = Math.floor(remainingTime / 3600);
-  const minutes = Math.floor((remainingTime % 3600) / 60);
-  const seconds = remainingTime % 60;
-
-  return (
-    <div className="timer text-bold">
-      <div className="text">Remaining</div>
-      <div className="value">{`${hours}:${minutes}:${seconds}`}</div>
-      <div className="text">seconds</div>
-    </div>
-  );
-};
 
 const Timer = ({ time }: TimeProps) => {
-  const { pomodoroState } = usePomodoro();
+  const { pomodoroState, setTitle } = usePomodoro();
+
+  const renderTime = ({ remainingTime }: RemainingTime) => {
+    if (remainingTime === 0) {
+      return <div className="timer">Too late...</div>;
+    }
+    const hours = Math.floor(remainingTime / 3600);
+    const minutes = Math.floor((remainingTime % 3600) / 60);
+    const seconds = remainingTime % 60;
+
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+      setTitle(`${hours}:${minutes}:${seconds}`);
+    });
+
+    return (
+      <div className="timer text-bold">
+        <div className="text">Remaining</div>
+        <div className="value">{`${hours}:${minutes}:${seconds}`}</div>
+        <div className="text">seconds</div>
+      </div>
+    );
+  };
+
   return (
     <div>
       <CountdownCircleTimer

@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useReducer } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useReducer,
+  useState,
+} from "react";
 import { pomodoroReducer } from "../reducer/pomodoroReducer";
 import { PomodoroContextType, PomodoroState } from "../types/pomodoro.type";
 
@@ -14,13 +20,16 @@ const initialPomodoroState: PomodoroState = {
 const PomodoroContext = createContext({} as PomodoroContextType);
 
 const PomodoroProvider = ({ children }: PomodoroProp) => {
+  const [title, setTitle] = useState("");
   const [pomodoroState, pomodoroDispatch] = useReducer(
     pomodoroReducer,
     initialPomodoroState
   );
 
   return (
-    <PomodoroContext.Provider value={{ pomodoroDispatch, pomodoroState }}>
+    <PomodoroContext.Provider
+      value={{ pomodoroDispatch, pomodoroState, title, setTitle }}
+    >
       {children}
     </PomodoroContext.Provider>
   );
