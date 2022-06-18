@@ -18,7 +18,7 @@ const Pomodoro = () => {
           <button
             className="btn btn-cta"
             onClick={() =>
-              pomodoroDispatch({ type: "START_CLOCK", payload: true })
+              pomodoroDispatch({ type: "START_CLOCK", payload: { play: true } })
             }
           >
             Start
@@ -26,14 +26,25 @@ const Pomodoro = () => {
           <button
             className="btn btn-secondary"
             onClick={() =>
-              pomodoroDispatch({ type: "PAUSE_CLOCK", payload: false })
+              pomodoroDispatch({
+                type: "PAUSE_CLOCK",
+                payload: { play: false },
+              })
             }
           >
             Pause
           </button>
         </div>
 
-        <button className="btn btn-secondary-outline pomodoro-restart">
+        <button
+          className="btn btn-secondary-outline pomodoro-restart"
+          onClick={() =>
+            pomodoroDispatch({
+              type: "RESET_CLOCK",
+              payload: { play: true, key: 5 },
+            })
+          }
+        >
           Restart
         </button>
       </div>

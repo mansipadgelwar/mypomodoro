@@ -27,6 +27,7 @@ const Timer = ({ time }: TimeProps) => {
   return (
     <div>
       <CountdownCircleTimer
+        key={pomodoroState.key}
         isPlaying={pomodoroState.play}
         duration={Number(time)}
         colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
