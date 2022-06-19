@@ -1,6 +1,9 @@
 import { useData, useService } from "../../context";
 import "./TaskForm.css";
 import { useToast } from "../../custom-hooks/useToast";
+import { MultiSelect } from "react-multi-select-component";
+import { useState } from "react";
+import React from "react";
 
 type Show = {
   show: boolean;
@@ -8,10 +11,18 @@ type Show = {
   onClose: () => void;
 };
 
+const options = [
+  { label: "Personal 🧘🏻‍♀️", value: "personal" },
+  { label: "Home 🏡", value: "home" },
+  { label: "Office 👔", value: "office" },
+  { label: "Gym 🏋🏻", value: "gym" },
+];
+
 const TaskForm = ({ show, onClose }: Show) => {
   const { formData, setFormData, isEdited, editedListOfTasks } = useData();
   const { state, dispatch } = useService();
   const { showToast } = useToast();
+  const [selected, setSelected] = useState([]);
 
   if (!show) {
     return null;
@@ -98,6 +109,15 @@ const TaskForm = ({ show, onClose }: Show) => {
                 }
                 value={formData.time}
                 required
+              />
+            </li>
+            <li className="unordered-list">
+              <pre>{JSON.stringify(selected)}</pre>
+              <MultiSelect
+                options={options}
+                value={selected}
+                onChange={setSelected}
+                labelledBy="Select"
               />
             </li>
           </ul>
