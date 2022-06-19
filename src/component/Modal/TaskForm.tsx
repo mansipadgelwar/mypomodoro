@@ -2,8 +2,7 @@ import { useData, useService } from "../../context";
 import "./TaskForm.css";
 import { useToast } from "../../custom-hooks/useToast";
 import { MultiSelect } from "react-multi-select-component";
-import { useState } from "react";
-import React from "react";
+import { useEffect } from "react";
 
 type Show = {
   show: boolean;
@@ -19,14 +18,16 @@ const options = [
 ];
 
 const TaskForm = ({ show, onClose }: Show) => {
-  const { formData, setFormData, isEdited, editedListOfTasks } = useData();
+  const {
+    formData,
+    setFormData,
+    isEdited,
+    editedListOfTasks,
+    setSelected,
+    selected,
+  } = useData();
   const { state, dispatch } = useService();
   const { showToast } = useToast();
-  const [selected, setSelected] = useState([]);
-
-  if (!show) {
-    return null;
-  }
 
   const handleEditTask = (event: any) => {
     event.preventDefault();
@@ -54,6 +55,17 @@ const TaskForm = ({ show, onClose }: Show) => {
     setFormData("");
     onClose();
   };
+
+  useEffect(() => {
+    setFormData((prev: any) => ({
+      ...prev,
+      tags: selected,
+    }));
+  }, [selected, setFormData]);
+
+  if (!show) {
+    return null;
+  }
 
   return (
     <div className="modal-wrapper">

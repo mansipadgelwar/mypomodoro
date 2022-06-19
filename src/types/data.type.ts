@@ -4,7 +4,13 @@ export type FormData = {
     description: string | undefined;
     time: string | undefined;
     date: string | undefined;
+    tags: Tags[] | undefined
   };
+
+type Tags = {
+  label: string;
+  value: string;
+}
 
 export type DataContextType = {
     formData: FormData;
@@ -14,6 +20,8 @@ export type DataContextType = {
     handleEditTask: (value: any) => void;
     editedListOfTasks: FormData;
     setEditedListOfTasks: (value: any) => void;
+    selected: Tags[];
+    setSelected: (value: any) => void;
   };
 
 export type ListOfTasks = { tasks: any[] };
