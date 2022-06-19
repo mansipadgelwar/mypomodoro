@@ -58,14 +58,19 @@ const Pomodoro = () => {
         <div className="task-description">{currentTask?.description}</div>
         <div className="h3 text-bold">Tags:</div>
         <div className="tags-container">
-          {currentTask?.tags?.map((element: any) => {
-            console.log(element);
-            return (
-              <div key={element} className="text-bold tags">
-                {`${JSON.stringify(element.label).replaceAll('"', "")}`}
-              </div>
-            );
-          })}
+          {currentTask.tags ? (
+            currentTask?.tags?.map((element: any) => {
+              return (
+                <div key={element} className="text-bold tags">
+                  {`${JSON.stringify(element.label).replaceAll('"', "")}`}
+                </div>
+              );
+            })
+          ) : (
+            <div className="text-bold">
+              <p className="gray-text">No tags selected</p>
+            </div>
+          )}
         </div>
         <div className="text-bold">
           Date added: {`${new Date(currentTask?.date).toLocaleString()}`}

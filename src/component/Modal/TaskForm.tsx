@@ -38,6 +38,7 @@ const TaskForm = ({ show, onClose }: Show) => {
           title: formData.title,
           description: formData.description,
           time: formData.time,
+          tags: formData.tags,
         };
         return updatedItem;
       }
@@ -124,7 +125,6 @@ const TaskForm = ({ show, onClose }: Show) => {
               />
             </li>
             <li className="unordered-list">
-              <pre>{JSON.stringify(selected)}</pre>
               <MultiSelect
                 options={options}
                 value={selected}
@@ -135,7 +135,9 @@ const TaskForm = ({ show, onClose }: Show) => {
           </ul>
         </div>
         <div className="filter-modal-cta">
-          <button className="btn">Cancel</button>
+          <button className="btn" onClick={onClose}>
+            Cancel
+          </button>
           <button
             className="btn btn-cta"
             onClick={(event) =>
