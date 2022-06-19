@@ -4,14 +4,7 @@ import { useData, useService } from "../../context";
 import "./Home.css";
 import { useToast } from "../../custom-hooks/useToast";
 import { NavLink } from "react-router-dom";
-
-type FormData = {
-  id: string;
-  title: string;
-  description: string;
-  time: string;
-  date: string;
-};
+import { FormData } from "../../types/data.type";
 
 const Home = () => {
   const [show, setShow] = useState(false);
