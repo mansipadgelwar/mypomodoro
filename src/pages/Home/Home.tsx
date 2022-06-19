@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TaskForm } from "../../component";
 import { useData, useService } from "../../context";
 import "./Home.css";
 import { useToast } from "../../custom-hooks/useToast";
+import { NavLink } from "react-router-dom";
 
 type FormData = {
   id: string;
   title: string;
   description: string;
   time: string;
+  date: string;
 };
 
 const Home = () => {
@@ -28,7 +30,11 @@ const Home = () => {
   const handleUpdationOfTask = (event: any, task: FormData) => {
     event.preventDefault();
     event.stopPropagation();
-    setFormData({ title: task.title, description: task.description });
+    setFormData({
+      title: task.title,
+      description: task.description,
+      time: task.time,
+    });
     setIsEdited(true);
     setShow(true);
     setEditedListOfTasks(task);
@@ -39,6 +45,12 @@ const Home = () => {
     setFormData("");
     setShow(true);
   };
+
+  localStorage.setItem("listOfTasks", JSON.stringify(state.tasks));
+
+  useEffect(() => {
+    document.title = `Home`;
+  });
 
   return (
     <div>
@@ -65,7 +77,12 @@ const Home = () => {
                 {state.tasks.map((task) => {
                   return (
                     <li className="todos h4" key={task.id}>
-                      <p>{task.title}</p>
+                      <NavLink
+                        to={`/pomodoro/${task.id}`}
+                        className="task-title"
+                      >
+                        <p>{task.title}</p>
+                      </NavLink>
                       <div>
                         <span
                           className="material-icons"

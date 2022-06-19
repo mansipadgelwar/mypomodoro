@@ -1,24 +1,8 @@
 import { createContext, ReactNode, useContext, useState } from "react";
+import { FormData, DataContextType } from "../types/data.type";
 
 type DataProp = {
   children: ReactNode;
-};
-
-type FormData = {
-  id: string;
-  title: string;
-  description: string;
-  time: string;
-};
-
-type DataContextType = {
-  formData: FormData;
-  setFormData: (value: any) => void;
-  isEdited: boolean;
-  setIsEdited: (value: boolean) => void;
-  handleEditTask: (value: any) => void;
-  editedListOfTasks: FormData;
-  setEditedListOfTasks: (value: any) => void;
 };
 
 const initialFormData: FormData = {
@@ -26,6 +10,7 @@ const initialFormData: FormData = {
   title: "",
   description: "",
   time: "",
+  date: new Date().toLocaleTimeString(),
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);

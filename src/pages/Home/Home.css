@@ -40,3 +40,8 @@
 .todo-lists-container {
   padding: 1.5rem;
 }
+
+.task-title {
+  color: var(--black);
+  text-decoration: none;
+}

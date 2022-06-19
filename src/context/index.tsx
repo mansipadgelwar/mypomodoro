@@ -1,2 +1,3 @@
-export { useData } from "../context/dataContext";
-export { useService } from "../context/serviceContext";
+export { useData, DataProvider } from "../context/dataContext";
+export { useService, ServiceProvider } from "../context/serviceContext";
+export { usePomodoro, PomodoroProvider } from "../context/pomodoroContext";
