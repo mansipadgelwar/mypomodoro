@@ -17,6 +17,9 @@ const taskReducer = (state: ListOfTasks, action: Action) => {
     case "UPDATE_TASK":
       return { ...state, tasks: action.payload };
 
+    case "FILTER_TASK":
+      return { ...state, filteredTasks: action.payload };
+
     default:
       return state;
   }

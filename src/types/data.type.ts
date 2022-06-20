@@ -24,7 +24,7 @@ export type DataContextType = {
     setSelected: (value: any) => void;
   };
 
-export type ListOfTasks = { tasks: any[] };
+export type ListOfTasks = { tasks: any[],filteredTasks: any[] };
 
 export type Action =
   | {
@@ -38,11 +38,17 @@ export type Action =
   | {
       type: "UPDATE_TASK";
       payload: any[];
-    };
+    }
+    | {
+      type: "FILTER_TASK";
+      payload: any[];
+    };;
 
 export type Dispatch = (action: Action) => void;
 
 export type ServiceContextType = {
   state: ListOfTasks;
   dispatch: Dispatch;
+  isFiltered: boolean;
+  setIsFiltered: (value: boolean) => void;
 };

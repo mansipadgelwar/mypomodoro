@@ -11,10 +11,10 @@ type Show = {
 };
 
 const options = [
-  { label: "Personal 🧘🏻‍♀️", value: "personal" },
-  { label: "Home 🏡", value: "home" },
-  { label: "Office 👔", value: "office" },
-  { label: "Gym 🏋🏻", value: "gym" },
+  { label: "Personal", value: "personal" },
+  { label: "Home", value: "home" },
+  { label: "Office", value: "office" },
+  { label: "Gym", value: "gym" },
 ];
 
 const TaskForm = ({ show, onClose }: Show) => {
