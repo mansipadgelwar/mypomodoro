@@ -36,6 +36,13 @@ const FilterForm = ({ onClosingFilter, showFilter }: ShowFilter) => {
     onClosingFilter();
   };
 
+  const handleCloseFilterModal = (event: any) => {
+    event.preventDefault();
+    setSelectedTag([]);
+    setIsFiltered(false);
+    onClosingFilter();
+  };
+
   if (!showFilter) {
     return null;
   }
@@ -64,7 +71,10 @@ const FilterForm = ({ onClosingFilter, showFilter }: ShowFilter) => {
           </ul>
         </div>
         <div className="filter-modal-cta">
-          <button className="btn" onClick={onClosingFilter}>
+          <button
+            className="btn"
+            onClick={(event) => handleCloseFilterModal(event)}
+          >
             Cancel
           </button>
           <button
