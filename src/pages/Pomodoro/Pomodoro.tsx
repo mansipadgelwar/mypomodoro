@@ -3,13 +3,16 @@ import { Timer } from "../../component/Timer/Timer";
 import { usePomodoro, useService } from "../../context";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { FormData } from "../../types/data.type";
 
 const Pomodoro = () => {
   const { state } = useService();
   const { id } = useParams();
   const { pomodoroDispatch, title } = usePomodoro();
 
-  const currentTask = state.tasks.find((item) => item.id === id);
+  const currentTask: FormData | undefined = state.tasks.find(
+    (item) => item.id === id
+  );
 
   useEffect(() => {
     document.title = `${title} 🙇‍♂️| Pomodoro`;
@@ -58,7 +61,7 @@ const Pomodoro = () => {
         <div className="task-description">{currentTask?.description}</div>
         <div className="h3 text-bold">Tags:</div>
         <div className="tags-container">
-          {currentTask.tags ? (
+          {currentTask ? (
             currentTask?.tags?.map((element: any) => {
               return (
                 <div key={element} className="text-bold tags">
@@ -73,7 +76,7 @@ const Pomodoro = () => {
           )}
         </div>
         <div className="text-bold">
-          Date added: {`${new Date(currentTask?.date).toLocaleString()}`}
+          {/* Date added: {`${new Date(currentTask?.date).toLocaleString()}`} */}
         </div>
       </div>
     </div>

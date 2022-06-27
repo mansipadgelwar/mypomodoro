@@ -5,19 +5,26 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { PomodoroProvider, ServiceProvider, DataProvider } from "./context";
+import {
+  PomodoroProvider,
+  ServiceProvider,
+  DataProvider,
+  AuthProvider,
+} from "./context";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <DataProvider>
-        <ServiceProvider>
-          <PomodoroProvider>
-            <ToastContainer />
-            <App />
-          </PomodoroProvider>
-        </ServiceProvider>
-      </DataProvider>
+      <AuthProvider>
+        <DataProvider>
+          <ServiceProvider>
+            <PomodoroProvider>
+              <ToastContainer />
+              <App />
+            </PomodoroProvider>
+          </ServiceProvider>
+        </DataProvider>
+      </AuthProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root") as HTMLElement

@@ -1,10 +1,10 @@
 export type FormData = {
-    id: string;
-    title: string | undefined;
-    description: string | undefined;
-    time: string | undefined;
-    date: string | undefined;
-    tags: Tags[] | undefined
+    id?: string;
+    title?: string;
+    description?: string;
+    time?: string;
+    date?: string | number | Date;
+    tags?: Tags[] 
   };
 
 type Tags = {
@@ -24,7 +24,7 @@ export type DataContextType = {
     setSelected: (value: any) => void;
   };
 
-export type ListOfTasks = { tasks: any[],filteredTasks: any[] };
+export type ListOfTasks = { tasks: FormData[],filteredTasks: FormData[] };
 
 export type Action =
   | {
