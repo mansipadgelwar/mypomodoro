@@ -1,9 +1,10 @@
-import { v4 as uuidv4 } from "uuid";
 import { ListOfTasks, Action } from "../types/data.type";
+import { v4 as uuidv4 } from "uuid";
 
 const taskReducer = (state: ListOfTasks, action: Action) => {
   switch (action.type) {
     case "SET_TASK":
+      console.log("action payload", action.payload);
       return {
         ...state,
         tasks: [

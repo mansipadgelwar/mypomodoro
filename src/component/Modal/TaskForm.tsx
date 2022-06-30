@@ -11,10 +11,10 @@ type Show = {
 };
 
 const options = [
-  { label: "Personal", value: "personal" },
-  { label: "Home", value: "home" },
-  { label: "Office", value: "office" },
-  { label: "Gym", value: "gym" },
+  { label: "Personal 🧘🏻‍♀️", value: "personal" },
+  { label: "Home 🏡", value: "home" },
+  { label: "Office 👔", value: "office" },
+  { label: "Gym 🏋🏻", value: "gym" },
 ];
 
 const TaskForm = ({ show, onClose }: Show) => {
@@ -51,7 +51,10 @@ const TaskForm = ({ show, onClose }: Show) => {
 
   const handleTaskDetail = (event: any) => {
     event.preventDefault();
-    dispatch({ type: "SET_TASK", payload: formData });
+    dispatch({
+      type: "SET_TASK",
+      payload: formData,
+    });
     showToast("Task added successfully", "success");
     setFormData("");
     onClose();

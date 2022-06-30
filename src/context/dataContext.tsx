@@ -6,10 +6,10 @@ type DataProp = {
 };
 
 const initialFormData: FormData = {
-  id: "",
-  title: "",
-  description: "",
-  time: "",
+  id: "1234",
+  title: "sample data",
+  description: "sample description",
+  time: "100",
   date: new Date().toLocaleTimeString(),
   tags: [{ label: "", value: "" }],
 };

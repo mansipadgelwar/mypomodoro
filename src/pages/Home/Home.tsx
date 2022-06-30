@@ -43,11 +43,10 @@ const Home = () => {
     setShow(true);
   };
 
-  localStorage.setItem("listOfTasks", JSON.stringify(state.tasks));
-
   useEffect(() => {
     document.title = `Home`;
-  });
+    localStorage.setItem("listOfTasks", JSON.stringify(state.tasks));
+  }, [state.tasks]);
 
   return (
     <div>
@@ -89,7 +88,7 @@ const Home = () => {
             </div>
             <div className="todo-lists-container">
               <ul className="todo-unordered-lists">
-                {isFiltered
+                {isFiltered && state.filteredTasks
                   ? state.filteredTasks.map((task) => {
                       return (
                         <li className="todos h4" key={task.id}>
@@ -118,8 +117,8 @@ const Home = () => {
                         </li>
                       );
                     })
-                  : state.tasks.length > 0 &&
-                    state.tasks.map((task) => {
+                  : state.tasks &&
+                    state.tasks?.map((task) => {
                       return (
                         <li className="todos h4" key={task.id}>
                           <NavLink
