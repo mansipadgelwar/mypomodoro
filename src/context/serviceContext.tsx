@@ -13,7 +13,7 @@ type ServiceProp = {
 };
 
 const initialState: ListOfTasks = {
-  tasks: [JSON.parse(localStorage.getItem("listOfTasks") || "{}")],
+  tasks: JSON.parse(localStorage.getItem("listOfTasks") || "{}"),
   filteredTasks: [],
 };
 

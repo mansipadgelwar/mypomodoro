@@ -4,7 +4,7 @@ export type FormData = {
     description?: string;
     time?: string;
     date?: string | number | Date;
-    tags?: Tags[] 
+    tags: Tags[] 
   };
 
 type Tags = {

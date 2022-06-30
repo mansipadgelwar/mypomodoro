@@ -10,7 +10,12 @@ type Show = {
   onClose: () => void;
 };
 
-const options = [
+type Options = {
+  label: string;
+  value: string;
+}[];
+
+const options: Options = [
   { label: "Personal 🧘🏻‍♀️", value: "personal" },
   { label: "Home 🏡", value: "home" },
   { label: "Office 👔", value: "office" },
@@ -38,7 +43,7 @@ const TaskForm = ({ show, onClose }: Show) => {
           title: formData.title,
           description: formData.description,
           time: formData.time,
-          tags: formData.tags,
+          tags: formData?.tags,
         };
         return updatedItem;
       }
@@ -51,20 +56,38 @@ const TaskForm = ({ show, onClose }: Show) => {
 
   const handleTaskDetail = (event: any) => {
     event.preventDefault();
-    dispatch({
-      type: "SET_TASK",
-      payload: formData,
-    });
-    showToast("Task added successfully", "success");
-    setFormData("");
-    onClose();
+    const titleAlreadyExists = state.tasks.find(
+      (item) => item.title === formData.title
+    );
+    if (!titleAlreadyExists) {
+      if (formData.title && formData.description && formData.time) {
+        dispatch({
+          type: "SET_TASK",
+          payload: formData,
+        });
+        setFormData("");
+        onClose();
+        showToast("Task added successfully", "success");
+      } else {
+        showToast("All fields are mandatory", "error");
+      }
+    } else {
+      showToast("Task with the same title already exists.", "error");
+    }
   };
 
   useEffect(() => {
-    setFormData((prev: any) => ({
-      ...prev,
-      tags: selected,
-    }));
+    if (Object.keys(selected).length === 0) {
+      setFormData((prev: any) => ({
+        ...prev,
+        tags: [{ label: "Personal 🧘🏻‍♀️", value: "personal" }],
+      }));
+    } else {
+      setFormData((prev: any) => ({
+        ...prev,
+        tags: selected,
+      }));
+    }
   }, [selected, setFormData]);
 
   if (!show) {

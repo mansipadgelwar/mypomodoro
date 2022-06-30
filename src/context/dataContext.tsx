@@ -11,7 +11,7 @@ const initialFormData: FormData = {
   description: "sample description",
   time: "100",
   date: new Date().toLocaleTimeString(),
-  tags: [{ label: "", value: "" }],
+  tags: [],
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
