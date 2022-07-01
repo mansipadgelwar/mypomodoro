@@ -9,24 +9,26 @@ const Login = () => {
     password: "",
   };
 
-  const currentLocation = useNavigate();
-  const { authState, loginUser } = useAuth();
+  const { loginUser, authState } = useAuth();
   const [formDetails, setFormDetails] = useState(initialFormDetails);
+  const currentLocation = useNavigate();
+  const getTokenFromLocalStorage = localStorage.getItem("token");
+  console.log(getTokenFromLocalStorage);
 
   const formDetailsHandler = () => {
     loginUser(formDetails.email, formDetails.password);
+    if (authState.isAuthorized) {
+      currentLocation("/home");
+      window.location.reload();
+    }
   };
 
   function loginWithTestCredentials() {
     setFormDetails((form) => ({
       ...form,
-      email: "adarshbalika@gmail.com",
-      password: "adarshBalika123",
+      email: "mpadgelwar@gmail.com",
+      password: "mansi@123",
     }));
-  }
-
-  if (authState.isAuthorized) {
-    currentLocation("/");
   }
 
   return (

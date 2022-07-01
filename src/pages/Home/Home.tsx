@@ -13,6 +13,7 @@ const Home = () => {
   const { state, dispatch, setIsFiltered, isFiltered } = useService();
   const { showToast } = useToast();
   const [showFilter, setShowFilter] = useState(false);
+  // const { authState } = useAuth();
 
   const handleDeleteTask = (task: FormData) => {
     const updatedListOfTasks = [...state.tasks].filter(
@@ -45,7 +46,11 @@ const Home = () => {
 
   useEffect(() => {
     document.title = `Home`;
-    localStorage.setItem("listOfTasks", JSON.stringify(state.tasks));
+
+    localStorage.setItem(
+      "listOfTasks",
+      JSON.stringify(state.tasks && state.tasks)
+    );
   }, [state.tasks]);
 
   return (
@@ -69,7 +74,7 @@ const Home = () => {
         <div className="home-page-container">
           <div className="h2 text-bold">Welcome back, Mansi!</div>
           <div className="h4">{`You have ${
-            state.tasks.length || 0
+            state.tasks?.length || 0
           } tasks for todo. All the best!!`}</div>
           <div className="todo-list-wrapper">
             <div className="todo-list-heading">
@@ -118,33 +123,36 @@ const Home = () => {
                       );
                     })
                   : state.tasks &&
-                    state.tasks?.map((task) => {
-                      return (
-                        <li className="todos h4" key={task.id}>
-                          <NavLink
-                            to={`/pomodoro/${task.id}`}
-                            className="task-title"
-                          >
-                            <p>{task.title}</p>
-                          </NavLink>
-                          <div>
-                            <span
-                              className="material-icons"
-                              onClick={(event) =>
-                                handleUpdationOfTask(event, task)
-                              }
+                    // eslint-disable-next-line array-callback-return
+                    state.tasks?.map((task, index) => {
+                      if (index >= 0) {
+                        return (
+                          <li className="todos h4" key={task.id}>
+                            <NavLink
+                              to={`/pomodoro/${task.id}`}
+                              className="task-title"
                             >
-                              edit_note
-                            </span>
-                            <span
-                              className="material-icons"
-                              onClick={() => handleDeleteTask(task)}
-                            >
-                              delete
-                            </span>
-                          </div>
-                        </li>
-                      );
+                              <p>{task.title}</p>
+                            </NavLink>
+                            <div>
+                              <span
+                                className="material-icons"
+                                onClick={(event) =>
+                                  handleUpdationOfTask(event, task)
+                                }
+                              >
+                                edit_note
+                              </span>
+                              <span
+                                className="material-icons"
+                                onClick={() => handleDeleteTask(task)}
+                              >
+                                delete
+                              </span>
+                            </div>
+                          </li>
+                        );
+                      }
                     })}
               </ul>
             </div>

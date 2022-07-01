@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 const taskReducer = (state: ListOfTasks, action: Action) => {
   switch (action.type) {
     case "SET_TASK":
-      if (action.payload.tags === undefined) {
+      if (action.payload?.tags === undefined || action.payload.tags === []) {
         return {
           ...state,
           tasks: [

@@ -12,8 +12,10 @@ type ServiceProp = {
   children: ReactNode;
 };
 
+const data = localStorage.getItem("listOfTasks");
+
 const initialState: ListOfTasks = {
-  tasks: JSON.parse(localStorage.getItem("listOfTasks") || "{}"),
+  tasks: JSON.parse(data || "{}"),
   filteredTasks: [],
 };
 

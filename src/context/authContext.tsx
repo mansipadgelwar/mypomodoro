@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useReducer } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 import { authReducer, initialAuthState } from "../reducer/authReducer";
 import { useToast } from "../custom-hooks/useToast";
 import { AuthContextType, AuthState } from "../types/auth.type";
@@ -33,7 +39,7 @@ const AuthProvider = ({ children }: AuthProp) => {
   const loginUser = async (email: any, password: any): Promise<void> => {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
-      showToast("Login Successful", "success");
+
       authDispatch({
         type: "INIT_AUTH",
         payload: {
@@ -43,6 +49,7 @@ const AuthProvider = ({ children }: AuthProp) => {
       });
       localStorage.setItem("token", user.uid);
       localStorage.setItem("user", JSON.stringify(user.displayName));
+      showToast("Login Successful", "success");
     } catch (error) {
       showToast(`Error while login`, "error");
       console.error("Error in login functionality", error);
@@ -78,6 +85,13 @@ const AuthProvider = ({ children }: AuthProp) => {
       console.error("Error in signup functionality", error);
     }
   };
+
+  useEffect(() => {
+    const getTokenFromLocalStorage = localStorage.getItem("token");
+    if (authState.isAuthorized && getTokenFromLocalStorage) {
+      localStorage.setItem("listOfTasks", JSON.stringify([]));
+    }
+  }, [authState.isAuthorized]);
 
   return (
     <AuthContext.Provider

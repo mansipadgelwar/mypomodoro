@@ -58,3 +58,7 @@
 .task-description {
   letter-spacing: 0.1rem;
 }
+
+.btn-cta:hover {
+  color: var(--primary-color);
+}

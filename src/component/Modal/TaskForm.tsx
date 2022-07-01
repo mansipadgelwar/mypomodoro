@@ -156,7 +156,7 @@ const TaskForm = ({ show, onClose }: Show) => {
         </div>
         <div className="filter-modal-cta">
           <button className="btn" onClick={onClose}>
-            Cancel
+            Clear
           </button>
           <button
             className="btn btn-cta"

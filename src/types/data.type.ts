@@ -29,7 +29,7 @@ export type ListOfTasks = { tasks: FormData[],filteredTasks: FormData[] };
 export type Action =
   | {
       type: "SET_TASK";
-      payload: FormData;
+      payload?: FormData;
     }
   | {
       type: "DELETE_TASK";
