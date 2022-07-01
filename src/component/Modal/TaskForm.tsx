@@ -77,17 +77,10 @@ const TaskForm = ({ show, onClose }: Show) => {
   };
 
   useEffect(() => {
-    if (Object.keys(selected).length === 0) {
-      setFormData((prev: any) => ({
-        ...prev,
-        tags: [{ label: "Personal 🧘🏻‍♀️", value: "personal" }],
-      }));
-    } else {
-      setFormData((prev: any) => ({
-        ...prev,
-        tags: selected,
-      }));
-    }
+    setFormData((prev: any) => ({
+      ...prev,
+      tags: selected,
+    }));
   }, [selected, setFormData]);
 
   if (!show) {
@@ -156,6 +149,7 @@ const TaskForm = ({ show, onClose }: Show) => {
                 value={selected}
                 onChange={setSelected}
                 labelledBy="Select"
+                hasSelectAll={true}
               />
             </li>
           </ul>

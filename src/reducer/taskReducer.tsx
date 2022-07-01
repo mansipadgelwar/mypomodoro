@@ -4,6 +4,20 @@ import { v4 as uuidv4 } from "uuid";
 const taskReducer = (state: ListOfTasks, action: Action) => {
   switch (action.type) {
     case "SET_TASK":
+      if (action.payload.tags === undefined) {
+        return {
+          ...state,
+          tasks: [
+            ...state.tasks,
+            {
+              ...action.payload,
+              id: uuidv4(),
+              date: new Date().getTime(),
+              tags: [{ label: "Personal 🧘🏻‍♀️", value: "personal" }],
+            },
+          ],
+        };
+      }
       return {
         ...state,
         tasks: [
