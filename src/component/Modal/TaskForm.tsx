@@ -66,6 +66,7 @@ const TaskForm = ({ show, onClose }: Show) => {
           payload: formData,
         });
         setFormData("");
+        setSelected("");
         onClose();
         showToast("Task added successfully", "success");
       } else {
@@ -156,7 +157,7 @@ const TaskForm = ({ show, onClose }: Show) => {
         </div>
         <div className="filter-modal-cta">
           <button className="btn" onClick={onClose}>
-            Clear
+            Cancel
           </button>
           <button
             className="btn btn-cta"

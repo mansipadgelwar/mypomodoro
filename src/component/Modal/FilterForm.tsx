@@ -75,7 +75,7 @@ const FilterForm = ({ onClosingFilter, showFilter }: ShowFilter) => {
             className="btn"
             onClick={(event) => handleCloseFilterModal(event)}
           >
-            Cancel
+            Clear
           </button>
           <button
             className="btn btn-cta"

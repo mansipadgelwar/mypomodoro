@@ -50,10 +50,7 @@ const Home = () => {
 
   useEffect(() => {
     document.title = `Home`;
-    localStorage.setItem(
-      "listOfTasks",
-      JSON.stringify(state.tasks && state.tasks)
-    );
+    localStorage.setItem("listOfTasks", JSON.stringify(state.tasks));
   }, [state.tasks]);
 
   return (
