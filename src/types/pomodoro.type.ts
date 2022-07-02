@@ -23,7 +23,10 @@ export type PomodoroContextType = {
   pomodoroState: PomodoroState;
   pomodoroDispatch: Dispatch;
   title: string;
-  setTitle: (title: string) => void
+  setTitle: (title: string) => void;
+  taskComplete : boolean,
+  setTaskComplete: (value: boolean) => void,
+  completeSession : boolean, setCompleteSession: (value: boolean) => void
 };
 
 

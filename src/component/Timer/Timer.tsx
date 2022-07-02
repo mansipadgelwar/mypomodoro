@@ -13,42 +13,87 @@ type TimeProps = {
 
 const Timer = ({ time }: TimeProps) => {
   time = time * 60;
-  const { pomodoroState, setTitle } = usePomodoro();
+  const {
+    pomodoroState,
+    setTitle,
+    setTaskComplete,
+    taskComplete,
+    completeSession,
+  } = usePomodoro();
+
+  const handleTaskCompletion = () => {
+    setTaskComplete(false);
+  };
+
+  const handleBreakCompletion = () => {
+    setTaskComplete(true);
+  };
 
   const renderTime = ({ remainingTime }: RemainingTime) => {
-    if (remainingTime === 0) {
-      return <div className="timer">Too late...</div>;
-    }
-    const hours = Math.floor(remainingTime / 3600) | 0;
-    const minutes = Math.floor((remainingTime % 3600) / 60) | 0;
-    const seconds = remainingTime % 60 | 0;
+    const hours = (remainingTime && Math.floor(remainingTime / 3600)) || 0;
+    const minutes =
+      (remainingTime && Math.floor((remainingTime % 3600) / 60)) || 0;
+    const seconds = (remainingTime && remainingTime % 60) || 0;
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    //eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       setTitle(`${hours}:${minutes}:${seconds}`);
     }, [hours, minutes, seconds]);
 
+    if (remainingTime > 0) {
+      return (
+        <div className="timer text-bold">
+          <div className="text">Remaining</div>
+          <div className="value">{`${hours}:${minutes}:${seconds}`}</div>
+          <div className="text">seconds</div>
+        </div>
+      );
+    }
+  };
+
+  const renderBreakTime = ({ remainingTime }: RemainingTime) => {
+    if (remainingTime === 0) {
+      return <div className="timer">Task Completed</div>;
+    }
+    const hours = Math.floor(remainingTime / 3600) || 0;
+    const minutes = Math.floor((remainingTime % 3600) / 60) || 0;
+    const seconds = remainingTime % 60 || 0;
+
     return (
       <div className="timer text-bold">
-        <div className="text">Remaining</div>
+        <div className="text">Short Break</div>
         <div className="value">{`${hours}:${minutes}:${seconds}`}</div>
-        <div className="text">seconds</div>
+        <div className="text">remaining seconds</div>
       </div>
     );
   };
 
   return (
     <div>
-      <CountdownCircleTimer
-        key={pomodoroState.key}
-        isPlaying={pomodoroState.play}
-        duration={Number(time)}
-        colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
-        colorsTime={[10, 6, 3, 0]}
-        onComplete={() => ({ shouldRepeat: true, delay: 1 })}
-      >
-        {renderTime}
-      </CountdownCircleTimer>
+      {taskComplete && !completeSession ? (
+        <CountdownCircleTimer
+          key={pomodoroState?.key}
+          isPlaying={pomodoroState?.play}
+          duration={time}
+          colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
+          colorsTime={[10, 6, 3, 0]}
+          onComplete={handleTaskCompletion}
+        >
+          {renderTime}
+        </CountdownCircleTimer>
+      ) : !completeSession ? (
+        <CountdownCircleTimer
+          isPlaying
+          duration={60}
+          colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
+          colorsTime={[10, 6, 3, 0]}
+          onComplete={handleBreakCompletion}
+        >
+          {renderBreakTime}
+        </CountdownCircleTimer>
+      ) : (
+        <div>Task completed</div>
+      )}
     </div>
   );
 };
