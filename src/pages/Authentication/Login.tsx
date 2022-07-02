@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
 import { LoginFormDetails } from "../../types/auth.type";
@@ -12,15 +12,9 @@ const Login = () => {
   const { loginUser, authState } = useAuth();
   const [formDetails, setFormDetails] = useState(initialFormDetails);
   const currentLocation = useNavigate();
-  const getTokenFromLocalStorage = localStorage.getItem("token");
-  console.log(getTokenFromLocalStorage);
 
   const formDetailsHandler = () => {
     loginUser(formDetails.email, formDetails.password);
-    if (authState.isAuthorized) {
-      currentLocation("/home");
-      window.location.reload();
-    }
   };
 
   function loginWithTestCredentials() {
@@ -30,6 +24,13 @@ const Login = () => {
       password: "mansi@123",
     }));
   }
+
+  useEffect(() => {
+    const getTokenFromLocalStorage = localStorage.getItem("token");
+    if (authState.isAuthorized && getTokenFromLocalStorage) {
+      currentLocation("/home");
+    }
+  }, [authState.isAuthorized, currentLocation]);
 
   return (
     <div className="authentication-page">

@@ -13,7 +13,11 @@ const Home = () => {
   const { state, dispatch, setIsFiltered, isFiltered } = useService();
   const { showToast } = useToast();
   const [showFilter, setShowFilter] = useState(false);
-  // const { authState } = useAuth();
+  let refresh = window.localStorage.getItem("refresh");
+  if (refresh === null) {
+    window.location.reload();
+    window.localStorage.setItem("refresh", "1");
+  }
 
   const handleDeleteTask = (task: FormData) => {
     const updatedListOfTasks = [...state.tasks].filter(
@@ -46,7 +50,6 @@ const Home = () => {
 
   useEffect(() => {
     document.title = `Home`;
-
     localStorage.setItem(
       "listOfTasks",
       JSON.stringify(state.tasks && state.tasks)
