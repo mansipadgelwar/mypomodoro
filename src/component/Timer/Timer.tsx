@@ -8,24 +8,25 @@ type RemainingTime = {
 };
 
 type TimeProps = {
-  time: string | undefined;
+  time: string | number | any;
 };
 
 const Timer = ({ time }: TimeProps) => {
+  time = time * 60;
   const { pomodoroState, setTitle } = usePomodoro();
 
   const renderTime = ({ remainingTime }: RemainingTime) => {
     if (remainingTime === 0) {
       return <div className="timer">Too late...</div>;
     }
-    const hours = Math.floor(remainingTime / 3600);
-    const minutes = Math.floor((remainingTime % 3600) / 60);
-    const seconds = remainingTime % 60;
+    const hours = Math.floor(remainingTime / 3600) | 0;
+    const minutes = Math.floor((remainingTime % 3600) / 60) | 0;
+    const seconds = remainingTime % 60 | 0;
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       setTitle(`${hours}:${minutes}:${seconds}`);
-    });
+    }, [hours, minutes, seconds]);
 
     return (
       <div className="timer text-bold">

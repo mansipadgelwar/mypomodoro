@@ -132,7 +132,7 @@ const TaskForm = ({ show, onClose }: Show) => {
             <li className="unordered-list">
               <input
                 type="number"
-                placeholder="Add time in seconds"
+                placeholder="Add time in minutes"
                 className="input-title"
                 onChange={(event) =>
                   setFormData((prev: any) => ({
