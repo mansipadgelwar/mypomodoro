@@ -76,7 +76,9 @@ const Pomodoro = () => {
           )}
         </div>
         <div className="text-bold">
-          {/* Date added: {`${new Date(currentTask?.date).toLocaleString()}`} */}
+          Date added:{" "}
+          {currentTask?.date &&
+            `${new Date(currentTask?.date).toLocaleString()}`}
         </div>
       </div>
     </div>
