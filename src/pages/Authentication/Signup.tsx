@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import { SignupForm } from "../../types/auth.type";
+import "../Authentication/authentication.css";
 
 const Signup = () => {
   const initialFormDetails = {
@@ -125,7 +126,7 @@ const Signup = () => {
             <button className="btn btn-cta" onClick={formDetailsHandler}>
               Create New Account
             </button>
-            <Link className="btn-link" to="/login">
+            <Link className="btn-link" to="/">
               Already have an account &gt;
             </Link>
           </form>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
 import { LoginFormDetails } from "../../types/auth.type";
+import "../Authentication/authentication.css";
 
 const Login = () => {
   const initialFormDetails: LoginFormDetails = {
@@ -17,7 +18,10 @@ const Login = () => {
     loginUser(formDetails.email, formDetails.password);
   };
 
-  function loginWithTestCredentials() {
+  function loginWithTestCredentials(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    e.preventDefault();
     setFormDetails((form) => ({
       ...form,
       email: "mpadgelwar@gmail.com",
@@ -105,7 +109,7 @@ const Login = () => {
             </button>
             <button
               className="btn btn-primary-outline"
-              onClick={loginWithTestCredentials}
+              onClick={(e) => loginWithTestCredentials(e)}
             >
               Login with test credentials
             </button>
