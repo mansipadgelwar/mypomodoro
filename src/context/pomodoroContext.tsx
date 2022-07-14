@@ -25,10 +25,21 @@ const PomodoroProvider = ({ children }: PomodoroProp) => {
     pomodoroReducer,
     initialPomodoroState
   );
+  const [taskComplete, setTaskComplete] = useState(true);
+  const [completeSession, setCompleteSession] = useState(false);
 
   return (
     <PomodoroContext.Provider
-      value={{ pomodoroDispatch, pomodoroState, title, setTitle }}
+      value={{
+        pomodoroDispatch,
+        pomodoroState,
+        title,
+        setTitle,
+        taskComplete,
+        setTaskComplete,
+        completeSession,
+        setCompleteSession,
+      }}
     >
       {children}
     </PomodoroContext.Provider>

@@ -1,0 +1,135 @@
+.authentication-page {
+  height: 100vh;
+  position: relative;
+}
+
+.authentication-page .input-icon span {
+  color: var(--primary-color);
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container .h3 {
+  padding-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.authentication-form-container {
+  margin-top: 1.88rem;
+  z-index: 1;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-icon > input {
+  max-width: 21.88rem;
+}
+
+.icons-right {
+  position: absolute;
+  right: 1.3rem;
+  bottom: 1.3rem;
+  z-index: 1;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.form {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-content: center;
+  flex-wrap: wrap;
+  min-width: 26rem;
+  width: 100%;
+  padding: 1rem;
+  box-shadow: var(--btn-box-shadow);
+  color: var(--white);
+  font-weight: bolder;
+  background-color: var(--white);
+}
+
+.h3,
+.checkbox,
+.btn-link {
+  text-align: center;
+}
+
+.authentication-page .input-label {
+  color: var(--black);
+  text-align: left;
+}
+
+.form .btn-link {
+  margin: 0;
+  color: var(--black);
+}
+
+.checkbox-detail {
+  margin-left: 0.5rem;
+  color: var(--black);
+}
+
+.form-container .input-icon .input {
+  padding-left: 2.4rem;
+}
+
+.checkbox-container {
+  width: 100%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.login-form .checkbox-container {
+  justify-content: space-between;
+}
+
+.checkbox {
+  margin-top: 0.15rem;
+}
+
+.login-form {
+  margin-top: 6.25rem;
+}
+
+.logout-content {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+
+.authentication-page .btn-cta {
+  color: var(--white);
+  max-width: 20rem;
+  width: 100%;
+  margin: auto;
+}
+
+.authentication-page .btn-primary-outline {
+  max-width: 20rem;
+  width: 100%;
+  margin: auto;
+}
+
+.btn-cta:hover {
+  background-color: var(--primary-light-shade);
+  color: var(--primary-color);
+}
+
+.authentication-page .input {
+  max-width: 22rem;
+}

@@ -1,6 +1,8 @@
 import { useData, useService } from "../../context";
 import "./TaskForm.css";
 import { useToast } from "../../custom-hooks/useToast";
+import { MultiSelect } from "react-multi-select-component";
+import { useEffect } from "react";
 
 type Show = {
   show: boolean;
@@ -8,14 +10,29 @@ type Show = {
   onClose: () => void;
 };
 
+type Options = {
+  label: string;
+  value: string;
+}[];
+
+const options: Options = [
+  { label: "Personal 🧘🏻‍♀️", value: "personal" },
+  { label: "Home 🏡", value: "home" },
+  { label: "Office 👔", value: "office" },
+  { label: "Gym 🏋🏻", value: "gym" },
+];
+
 const TaskForm = ({ show, onClose }: Show) => {
-  const { formData, setFormData, isEdited, editedListOfTasks } = useData();
+  const {
+    formData,
+    setFormData,
+    isEdited,
+    editedListOfTasks,
+    setSelected,
+    selected,
+  } = useData();
   const { state, dispatch } = useService();
   const { showToast } = useToast();
-
-  if (!show) {
-    return null;
-  }
 
   const handleEditTask = (event: any) => {
     event.preventDefault();
@@ -26,6 +43,7 @@ const TaskForm = ({ show, onClose }: Show) => {
           title: formData.title,
           description: formData.description,
           time: formData.time,
+          tags: formData?.tags,
         };
         return updatedItem;
       }
@@ -38,11 +56,37 @@ const TaskForm = ({ show, onClose }: Show) => {
 
   const handleTaskDetail = (event: any) => {
     event.preventDefault();
-    dispatch({ type: "SET_TASK", payload: formData });
-    showToast("Task added successfully", "success");
-    setFormData("");
-    onClose();
+    const titleAlreadyExists = state.tasks.find(
+      (item) => item.title === formData.title
+    );
+    if (!titleAlreadyExists) {
+      if (formData.title && formData.description && formData.time) {
+        dispatch({
+          type: "SET_TASK",
+          payload: formData,
+        });
+        setFormData("");
+        setSelected("");
+        onClose();
+        showToast("Task added successfully", "success");
+      } else {
+        showToast("All fields are mandatory", "error");
+      }
+    } else {
+      showToast("Task with the same title already exists.", "error");
+    }
   };
+
+  useEffect(() => {
+    setFormData((prev: any) => ({
+      ...prev,
+      tags: selected,
+    }));
+  }, [selected, setFormData]);
+
+  if (!show) {
+    return null;
+  }
 
   return (
     <div className="modal-wrapper">
@@ -88,7 +132,7 @@ const TaskForm = ({ show, onClose }: Show) => {
             <li className="unordered-list">
               <input
                 type="number"
-                placeholder="Add time in seconds"
+                placeholder="Add time in minutes"
                 className="input-title"
                 onChange={(event) =>
                   setFormData((prev: any) => ({
@@ -100,10 +144,21 @@ const TaskForm = ({ show, onClose }: Show) => {
                 required
               />
             </li>
+            <li className="unordered-list">
+              <MultiSelect
+                options={options}
+                value={selected}
+                onChange={setSelected}
+                labelledBy="Select"
+                hasSelectAll={true}
+              />
+            </li>
           </ul>
         </div>
         <div className="filter-modal-cta">
-          <button className="btn">Cancel</button>
+          <button className="btn" onClick={onClose}>
+            Cancel
+          </button>
           <button
             className="btn btn-cta"
             onClick={(event) =>

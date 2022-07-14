@@ -45,3 +45,8 @@
   color: var(--black);
   text-decoration: none;
 }
+
+.todo-heading-menu {
+  display: flex;
+  gap: 10px;
+}

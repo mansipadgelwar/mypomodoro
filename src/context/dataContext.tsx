@@ -6,11 +6,12 @@ type DataProp = {
 };
 
 const initialFormData: FormData = {
-  id: "",
-  title: "",
-  description: "",
-  time: "",
+  id: "1234",
+  title: "sample data",
+  description: "sample description",
+  time: "100",
   date: new Date().toLocaleTimeString(),
+  tags: [],
 };
 
 const DataContext = createContext<DataContextType>({} as DataContextType);
@@ -20,6 +21,7 @@ const DataProvider = ({ children }: DataProp) => {
   const [isEdited, setIsEdited] = useState(false);
   const [editedListOfTasks, setEditedListOfTasks] =
     useState<FormData>(initialFormData);
+  const [selected, setSelected] = useState([]);
 
   const handleEditTask = (event: any) => {
     event.preventDefault();
@@ -35,6 +37,8 @@ const DataProvider = ({ children }: DataProp) => {
         handleEditTask,
         setEditedListOfTasks,
         editedListOfTasks,
+        selected,
+        setSelected,
       }}
     >
       {children}
