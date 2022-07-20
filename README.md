@@ -4,7 +4,7 @@
 MyPomodoro is a deceptively simple system that stops you from procrastinating or getting distracted so you can just get things done.
 
 
-![Logo](https://i.postimg.cc/50wy9LYP/component-1.png)
+![Logo](https://i.postimg.cc/ZKk8bx9S/Untitled-design-2.png)
 
 
 ## Run Locally
