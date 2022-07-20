@@ -1,46 +1,75 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MyPomodoro
 
-## Available Scripts
+MyPomodoro is a deceptively simple system that stops you from procrastinating or getting distracted so you can just get things done.
 
-In the project directory, you can run:
 
-### `npm start`
+![Logo](https://i.postimg.cc/50wy9LYP/component-1.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Run Locally
 
-### `npm test`
+Clone the project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+    git clone https://github.com/mansipadgelwar/mypomodoro.git
+```
 
-### `npm run build`
+Go to the project directory
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  cd mypomodoro
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+  npm install
+```
 
-### `npm run eject`
+Start the server
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+  npm run start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Environment Variables
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To run this project, you will need to add the following environment variables to your .env file
 
-## Learn More
+`REACT_APP_FIREBASE_API_KEY`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`REACT_APP_FIREBASE_AUTH_DOMAIN`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`REACT_APP_FIREBASE_PROJECT_ID`
+
+`REACT_APP_FIREBASE_STORAGE_BUCKET`
+
+`REACT_APP_FIREBASE_MESSAGING_SENDER_ID`
+
+`REACT_APP_FIREBASE_APP_ID`
+
+
+## Features
+
+- Add a task
+- Edit/Delete a task
+- Pomodoro Feature
+- Start/Pause/Reset Clock
+- Data Persistence
+  - The data of tasks is saved even after refreshing the page on local storage.
+- Tags for task
+  - Can add different tags on tasks based on the task type.
+  - We can use these tags to filter the task
+- Page title in sync with Pomodoro time
+
+## Tech Stack
+
+Typescript with ReactJS
+
+
+## Demo
+
+Insert gif or link to demo
+
