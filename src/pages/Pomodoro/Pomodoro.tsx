@@ -38,7 +38,6 @@ const Pomodoro = () => {
         {taskComplete && !completeSession ? (
           <>
             <div className="pomodoro-controls">
-              {" "}
               <button
                 className="btn btn-cta"
                 onClick={() =>
@@ -115,7 +114,7 @@ const Pomodoro = () => {
           {currentTask ? (
             currentTask?.tags?.map((element: any) => {
               return (
-                <div key={element} className="text-bold tags">
+                <div className="text-bold tags">
                   {`${JSON.stringify(element.label).replaceAll('"', "")}`}
                 </div>
               );
@@ -127,7 +126,7 @@ const Pomodoro = () => {
           )}
         </div>
         <div className="text-bold">
-          Date added:{" "}
+          Date added:
           {currentTask?.date &&
             `${new Date(currentTask?.date).toLocaleString()}`}
         </div>

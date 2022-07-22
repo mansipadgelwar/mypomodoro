@@ -92,7 +92,19 @@ const Timer = ({ time }: TimeProps) => {
           {renderBreakTime}
         </CountdownCircleTimer>
       ) : (
-        <div>Task completed</div>
+        <>
+          <div className="gif-container">
+            <iframe
+              src="https://giphy.com/embed/zwb4AvXN67p6SlvbIW"
+              title="task completion GIF"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              className="giphy-embed"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </>
       )}
     </div>
   );

@@ -5,3 +5,8 @@
   gap: 0.3rem;
   color: var(--primary-color);
 }
+
+.gif-container {
+  width: "100%";
+  position: "relative";
+}

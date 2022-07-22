@@ -66,7 +66,6 @@ const TaskForm = ({ show, onClose }: Show) => {
           payload: formData,
         });
         setFormData("");
-        setSelected("");
         onClose();
         showToast("Task added successfully", "success");
       } else {
@@ -111,7 +110,7 @@ const TaskForm = ({ show, onClose }: Show) => {
                     title: event.target.value,
                   }))
                 }
-                value={formData.title}
+                value={formData.title || ""}
                 required
               />
             </li>
@@ -125,7 +124,7 @@ const TaskForm = ({ show, onClose }: Show) => {
                     description: event.target.value,
                   }))
                 }
-                value={formData.description}
+                value={formData.description || ""}
                 required
               />
             </li>
@@ -140,14 +139,14 @@ const TaskForm = ({ show, onClose }: Show) => {
                     time: event.target.value,
                   }))
                 }
-                value={formData.time}
+                value={formData.time || ""}
                 required
               />
             </li>
             <li className="unordered-list">
               <MultiSelect
                 options={options}
-                value={selected}
+                value={selected || ""}
                 onChange={setSelected}
                 labelledBy="Select"
                 hasSelectAll={true}
